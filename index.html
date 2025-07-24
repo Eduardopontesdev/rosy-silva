@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rosy Silva - Cantora Oficial</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-content container">
+        <img src="./rosy-silva.png" alt="Rosy Silva" class="artist-photo" />
+        <h1>Rosy Silva</h1>
+        <p class="subtitle">A voz inconfundível</p>
+
+        <!-- <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div> -->
+
+        <a href="#shows" class="scroll-down">
+          <i class="fas fa-chevron-down"></i>
+        </a>
+      </div>
+    </header>
+
+    <section id="shows" class="shows-section">
+      <div class="container">
+        <h2 class="section-title">Agenda de Agosto</h2>
+
+        <div class="agenda">
+          <!-- Eventos serão preenchidos via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section class="music-section">
+      <div class="container">
+        <h2 class="section-title">Minha Música</h2>
+
+        <div class="music-player">
+          <div class="album-cover">
+            <img
+              src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+              alt="Beijo de cinema"
+            />
+          </div>
+
+          <div class="player-controls">
+            <h3>Beijo de cinema</h3>
+            <p>Musica mais recente</p>
+
+            <audio
+              id="audio-player"
+              src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+            ></audio>
+
+            <div class="controls">
+              <button id="play-btn" class="control-btn">
+                <i class="fas fa-play"></i>
+              </button>
+              <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+              </div>
+              <span class="time" id="current-time">0:00</span>
+            </div>
+            <!--
+                    <div class="streaming-links">
+                        <a href="#" class="streaming-btn spotify">
+                            <i class="fab fa-spotify"></i> Spotify
+                        </a>
+                        <a href="#" class="streaming-btn apple">
+                            <i class="fab fa-apple"></i> Apple Music
+                        </a>
+                    </div>
+                    -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="container">
+        
+            <h2 class="section-title">Momentos</h2>
+            
+            <div class="gallery-grid">
+                
+            </div>
+            
+            Em desenvolvimento...
+            
+        
+        
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <h2 class="section-title">Contato</h2>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Fale com minha equipe</h3>
+            <!-- <p><i class="fas fa-envelope"></i> contato@rosysilva.com</p> -->
+            <p><i class="fas fa-phone"></i> (88) 99723-4713</p>
+            <p><i class="fas fa-phone"></i> (88) 99282-2055</p>
+
+            <a
+              href="https://wa.me/5588997234713?text=Olá%20Rosy,%20gostaria%20de%20saber%20mais%20sobre%20seus%20shows"
+              class="whatsapp-btn"
+            >
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+          <!--
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Seu e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" placeholder="Sua mensagem" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                </form>
+                -->
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h3>Rosy Silva</h3>
+            <p>A voz inconfundível</p>
+          </div>
+
+          <div class="footer-links">
+            <a href="#shows">Shows</a>
+            <a href="#music">Música</a>
+            <a href="#gallery">Galeria</a>
+            <a href="#contact">Contato</a>
+          </div>
+
+          <!-- <div class="newsletter">
+            <h4>Newsletter</h4>
+            <form class="newsletter-form" id="newsletter-form">
+              <input
+                type="email"
+                id="newsletter-email"
+                placeholder="Seu e-mail"
+              />
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div> -->
+        </div>
+
+        <div class="copyright">
+          <p>
+            &copy; <span id="current-year"></span> Rosy Silva. Todos os direitos
+            reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="lightbox">
+      <span class="close-lightbox">&times;</span>
+      <img class="lightbox-content" id="lightbox-img" />
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
