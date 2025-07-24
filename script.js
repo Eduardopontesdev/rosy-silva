@@ -56,7 +56,7 @@ const showsData = [
         date: "03/08/2025",
         day: "03",
         month: "Ago",
-        title: "Lucian'os Bar",
+        title: "Lucian's Bar",
         location: "Domingo apartir das 15H",
         description: "Local: Pantanal",
         link: "#"
@@ -76,7 +76,7 @@ const showsData = [
         month: "Ago",
         title: "Bar e Restaurante O Chumbada",
         location: "Domingo apartir das 19H",
-        description: "Local: Bairro Cruzeiro",
+        description: "Local: O Chumbada",
         link: "#"
     },
     {
