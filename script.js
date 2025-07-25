@@ -194,7 +194,7 @@ function setupMusicPlayer() {
     const currentTimeElement = document.getElementById('current-time');
     
     // Usando uma música de exemplo (substitua pelo arquivo real)
-    audioPlayer.src = './beijo-de-cinema.mp3';
+    audioPlayer.src = './cama-de-solteiro.mp3';
     
     playBtn.addEventListener('click', function() {
         if (audioPlayer.paused) {
