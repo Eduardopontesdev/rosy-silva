@@ -539,3 +539,65 @@ function setupForms() {
     });
   }
 }
+// Controles da Rádio
+const radioPlayer = document.getElementById('radio-stream');
+const radioPlayBtn = document.getElementById('radio-play-btn');
+const radioVolume = document.getElementById('radio-volume');
+const radioStatus = document.getElementById('radio-status-text');
+
+// Configuração inicial
+radioPlayer.volume = radioVolume.value;
+let isRadioPlaying = false;
+
+// Event Listeners
+radioPlayBtn.addEventListener('click', function() {
+    if (isRadioPlaying) {
+        radioPlayer.pause();
+        radioPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+        radioStatus.textContent = 'Pausado';
+        isRadioPlaying = false;
+    } else {
+        radioPlayer.play()
+            .then(() => {
+                radioPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                radioStatus.textContent = 'Tocando agora';
+                isRadioPlaying = true;
+            })
+            .catch(error => {
+                console.error("Erro ao reproduzir rádio:", error);
+                radioStatus.textContent = 'Erro ao conectar';
+                // Mostra alerta para o usuário
+                showNotification('Não foi possível conectar à rádio. Tente novamente mais tarde.', 'error');
+            });
+    }
+});
+
+radioVolume.addEventListener('input', function() {
+    radioPlayer.volume = this.value;
+});
+
+// Mostrar status de conexão
+radioPlayer.addEventListener('playing', function() {
+    radioStatus.textContent = 'Tocando agora';
+});
+
+radioPlayer.addEventListener('waiting', function() {
+    radioStatus.textContent = 'Conectando...';
+});
+
+radioPlayer.addEventListener('error', function() {
+    radioStatus.textContent = 'Erro de conexão';
+    radioPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+    isRadioPlaying = false;
+});
+
+// Função para tentar reconexão automaticamente
+function checkRadioConnection() {
+    if (isRadioPlaying && radioPlayer.readyState === 0) {
+        radioPlayer.load();
+        radioPlayer.play().catch(e => console.log("Tentativa de reconexão falhou"));
+    }
+}
+
+// Verifica a conexão a cada 30 segundos
+setInterval(checkRadioConnection, 30000);
