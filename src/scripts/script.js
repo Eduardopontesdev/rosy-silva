@@ -790,43 +790,104 @@ function checkRadioConnection() {
 setInterval(checkRadioConnection, 30000);
 
 // Configuração
-const API_NAMESPACE = 'rosysilva-site';
+const API_NAMESPACE_VISITS = 'rosysilva-site-visits-v2'; // Alterei o namespace para evitar cache
+const VISIT_KEY = 'total_visits';
 
-// Contador de visitas ao site
+// Função principal para contar visitas
 async function handleVisits() {
-    const visitKey = 'visits';
     const counterElement = document.getElementById('site-visits');
-    
+    if (!counterElement) return;
+
+    // 1. Verifica se já contou nesta sessão
     if (!sessionStorage.getItem('visitCounted')) {
         try {
-            // Incrementa a API
-            await fetch(`https://api.countapi.xyz/hit/${API_NAMESPACE}/${visitKey}`);
-            
-            // Atualiza localStorage
-            const localCount = localStorage.getItem(visitKey) || 0;
-            localStorage.setItem(visitKey, parseInt(localCount) + 1);
-            
+            // 2. Atualiza o localStorage primeiro (feedback imediato)
+            let localCount = parseInt(localStorage.getItem(VISIT_KEY)) || 0;
+            localCount++;
+            localStorage.setItem(VISIT_KEY, localCount);
+            counterElement.textContent = localCount;
+
+            // 3. Tenta atualizar a API (se online)
+            if (navigator.onLine) {
+                const response = await fetch(`https://api.countapi.xyz/hit/${API_NAMESPACE_VISITS}/${VISIT_KEY}`);
+                const data = await response.json();
+                
+                // 4. Atualiza com o valor real da API
+                if (data.value) {
+                    counterElement.textContent = data.value;
+                    localStorage.setItem(VISIT_KEY, data.value);
+                }
+            }
+
+            // 5. Marca como contado nesta sessão
             sessionStorage.setItem('visitCounted', 'true');
         } catch (error) {
-            console.log("Modo offline ativado para contador");
+            console.error("Erro ao contar visita:", error);
         }
     }
-    
-    // Exibe o valor atual
+
+    // 6. Carrega a contagem atual (mesmo se já tiver contado)
+    loadVisitCount();
+}
+
+// Função para carregar a contagem atual
+async function loadVisitCount() {
+    const counterElement = document.getElementById('site-visits');
+    if (!counterElement) return;
+
     try {
-        const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE}/${visitKey}`);
-        const data = await response.json();
-        counterElement.textContent = data.value.toLocaleString();
-    } catch {
-        const localCount = localStorage.getItem(visitKey) || 1;
+        // 1. Tenta pegar da API primeiro (se online)
+        if (navigator.onLine) {
+            const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_VISITS}/${VISIT_KEY}`);
+            const data = await response.json();
+            
+            if (data.value) {
+                // 2. Atualiza o localStorage com o valor da API
+                localStorage.setItem(VISIT_KEY, data.value);
+                counterElement.textContent = data.value;
+                return;
+            }
+        }
+
+        // 3. Fallback para localStorage
+        const localCount = localStorage.getItem(VISIT_KEY) || '0';
+        counterElement.textContent = localCount;
+    } catch (error) {
+        console.error("Erro ao carregar contagem:", error);
+        const localCount = localStorage.getItem(VISIT_KEY) || '0';
         counterElement.textContent = localCount;
     }
 }
 
-// Inicializa
+// Sincronização periódica (a cada 2 minutos)
+function startVisitSync() {
+    setInterval(async () => {
+        if (navigator.onLine) {
+            try {
+                const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_VISITS}/${VISIT_KEY}`);
+                const data = await response.json();
+                
+                if (data.value) {
+                    const currentLocal = parseInt(localStorage.getItem(VISIT_KEY)) || 0;
+                    if (data.value > currentLocal) {
+                        localStorage.setItem(VISIT_KEY, data.value);
+                        const counterElement = document.getElementById('site-visits');
+                        if (counterElement) {
+                            counterElement.textContent = data.value;
+                        }
+                    }
+                }
+            } catch (error) {
+                console.log("Erro na sincronização periódica:", error);
+            }
+        }
+    }, 120000); // 120000 ms = 2 minutos
+}
+
+// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     handleVisits();
-    // Sua inicialização de player aqui
+    startVisitSync();
 });
 
 // Inicialização (no final do seu script)
