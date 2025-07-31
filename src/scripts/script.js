@@ -212,6 +212,7 @@ function loadGallery() {
 // Configuração da Playlist
 const playlist = [
   {
+    id: "cama-de-solteiro",
     title: "Cama de solteiro",
     album: "CD Promocional Rosy Silva",
     cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
@@ -219,6 +220,7 @@ const playlist = [
     duration: "3:23",
   },
   {
+    id: "Destruindo-nosso-amor",
     title: "Destruindo nosso amor",
     album: "CD Promocional Rosy Silva",
     cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
@@ -226,6 +228,7 @@ const playlist = [
     duration: "3:36",
   },
   {
+    id: "Eu-nunca-te-trai",
     title: "Eu nunca te trai",
     album: "CD Promocional Rosy Silva",
     cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
@@ -233,6 +236,7 @@ const playlist = [
     duration: "3:15",
   },
   {
+    id: "Me-doi",
     title: "Me doi",
     album: "CD Promocional Rosy Silva",
     cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
@@ -240,6 +244,7 @@ const playlist = [
     duration: "4:06",
   },
   {
+    id: "Telefone-tocou",
     title: "Telefone tocou",
     album: "CD Promocional Rosy Silva",
     cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
@@ -247,6 +252,7 @@ const playlist = [
     duration: "3:03",
   },
   {
+    id: "Seu-beijo",
     title: "Seu beijo",
     album: "CD Promocional Rosy Silva",
     cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
@@ -254,6 +260,7 @@ const playlist = [
     duration: "2:45",
   },
   {
+    id: "De-volta-pro-amor",
     title: "De volta pro amor",
     album: "CD Promocional Rosy Silva",
     cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
@@ -261,6 +268,7 @@ const playlist = [
     duration: "3:21",
   },
   {
+    id: "18-Quilates",
     title: "18 Quilates",
     album: "CD Promocional Rosy Silva",
     cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
@@ -268,6 +276,7 @@ const playlist = [
     duration: "3:21",
   },
   {
+    id: "Amiga-falsa",
     title: "Amiga falsa",
     album: "CD Promocional Rosy Silva",
     cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
@@ -307,6 +316,11 @@ function loadPlaylist() {
             <div class="track-info">
                 <span class="track-title">${track.title}</span>
                 <span class="track-album">${track.album}</span>
+                <div class="play-count"> <!-- Adicione esta div -->
+                    <i class="fas fa-play-circle"></i>
+                    <span class="play-number" id="plays-${track.id}">0</span>
+                    <span class="play-text">plays</span>
+                </div>
             </div>
             <span class="track-duration">${track.duration}</span>
         `;
@@ -317,7 +331,68 @@ function loadPlaylist() {
 
     trackListElement.appendChild(trackElement);
   });
+  
+  // Carrega as contagens ao inicializar
+  loadPlayCounts(); // ← Adicione esta linha
 }
+
+// ========== NOVAS FUNÇÕES PARA CONTAGEM ========== //
+// Configuração
+const API_NAMESPACE_TRACK = 'rosysilva-music-tracks'; // Namespace diferente para músicas
+
+// Função para contar plays
+async function countPlay(trackId) {
+    const counterElement = document.getElementById(`plays-${trackId}`);
+    
+    // 1. Atualiza imediatamente no localStorage para feedback visual
+    const localCount = parseInt(localStorage.getItem(`track-${trackId}-plays`)) || 0;
+    const newLocalCount = localCount + 1;
+    localStorage.setItem(`track-${trackId}-plays`, newLocalCount);
+    counterElement.textContent = newLocalCount;
+    
+    // 2. Tenta atualizar na API (se online)
+    if (navigator.onLine) {
+        try {
+            const response = await fetch(`https://api.countapi.xyz/hit/${API_NAMESPACE_TRACK}/${trackId}`);
+            const data = await response.json();
+            
+            // 3. Atualiza com o valor correto da API
+            counterElement.textContent = data.value;
+            localStorage.setItem(`track-${trackId}-plays`, data.value);
+        } catch (error) {
+            console.error("Erro ao atualizar API:", error);
+        }
+    }
+}
+
+// Função para carregar contagens
+async function loadPlayCounts() {
+    for (const track of playlist) {
+        const counterElement = document.getElementById(`plays-${track.id}`);
+        
+        // 1. Tenta pegar da API primeiro
+        if (navigator.onLine) {
+            try {
+                const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_TRACK}/${track.id}`);
+                const data = await response.json();
+                
+                if (data.value) {
+                    counterElement.textContent = data.value;
+                    localStorage.setItem(`track-${track.id}-plays`, data.value);
+                    continue; // Pula para próxima música se obteve sucesso
+                }
+            } catch (error) {
+                console.log("Falha ao carregar da API:", error);
+            }
+        }
+        
+        // 2. Fallback para localStorage
+        const localCount = localStorage.getItem(`track-${track.id}-plays`) || 0;
+        counterElement.textContent = localCount;
+    }
+}
+
+
 
 // Toca uma faixa específica
 function playTrack(index) {
@@ -345,6 +420,8 @@ function playTrack(index) {
   audioPlayer.play();
   playBtn.innerHTML = '<i class="fas fa-pause"></i>';
   isPlaying = true;
+
+  countPlay(playlist[index].id);
 }
 
 // Formata o tempo (segundos para MM:SS)
@@ -639,3 +716,51 @@ function checkRadioConnection() {
 
 // Verifica a conexão a cada 30 segundos
 setInterval(checkRadioConnection, 30000);
+
+// Configuração
+const API_NAMESPACE = 'rosysilva-site';
+
+// Contador de visitas ao site
+async function handleVisits() {
+    const visitKey = 'visits';
+    const counterElement = document.getElementById('site-visits');
+    
+    if (!sessionStorage.getItem('visitCounted')) {
+        try {
+            // Incrementa a API
+            await fetch(`https://api.countapi.xyz/hit/${API_NAMESPACE}/${visitKey}`);
+            
+            // Atualiza localStorage
+            const localCount = localStorage.getItem(visitKey) || 0;
+            localStorage.setItem(visitKey, parseInt(localCount) + 1);
+            
+            sessionStorage.setItem('visitCounted', 'true');
+        } catch (error) {
+            console.log("Modo offline ativado para contador");
+        }
+    }
+    
+    // Exibe o valor atual
+    try {
+        const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE}/${visitKey}`);
+        const data = await response.json();
+        counterElement.textContent = data.value.toLocaleString();
+    } catch {
+        const localCount = localStorage.getItem(visitKey) || 1;
+        counterElement.textContent = localCount;
+    }
+}
+
+// Inicializa
+document.addEventListener('DOMContentLoaded', () => {
+    handleVisits();
+    // Sua inicialização de player aqui
+});
+
+// Inicialização (no final do seu script)
+loadPlaylist();
+
+// Garanta que loadPlayCounts() seja chamado após o carregamento da playlist
+setTimeout(() => {
+    loadPlayCounts();
+}, 500);

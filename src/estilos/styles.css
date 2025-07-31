@@ -1024,3 +1024,48 @@ header {
         min-width: 150px;
     }
 }
+
+.visitor-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,0,0,0.05);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.visitor-counter i {
+    color: #e83f6f;
+}
+
+#site-visits {
+    font-weight: bold;
+    color: #2274a5;
+}
+
+/* Estilos do contador de plays */
+.play-count {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #666;
+}
+
+.play-count i {
+    color: #e83f6f;
+    font-size: 0.8rem;
+}
+
+.play-number {
+    font-weight: bold;
+    color: #2274a5;
+}
+
+.play-text {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
