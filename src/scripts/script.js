@@ -103,9 +103,9 @@ const showsData = [
     date: "17/08/2025",
     day: "17",
     month: "Ago",
-    title: "Agenda aberta",
-    location: "Horario a combinar",
-    description: "Local: indefinido",
+    title: "Barraca 4 irmãos",
+    location: "Apartir do meio dia > * + Duas atração aguardando confirmar",
+    description: "Local: Lago seco",
     link: "#",
   },
   {
@@ -117,15 +117,25 @@ const showsData = [
     description: "Local: indefinido",
     link: "#",
   },
+  {
+    date: "31/08/2025",
+    day: "31",
+    month: "Ago",
+    title: "Agenda aberta",
+    location: "Horario a combinar",
+    description: "Local: indefinido",
+    link: "#",
+  },
 ];
 
 // Galeria de fotos
 const galleryImages = [
-  "./lucians-bar-dia-03.png",
-  "./delegas-grill-dia-09.png",
-  "./barraca-fenix-dia-10.png",
-  "./bar-restaurante-o-chumbada-dia-10.png",
-  "./embrasa-dia-16.png",
+  "../src/imagens/lucians-bar-dia-03.png",
+  "../src/imagens/delegas-grill-dia-09.png",
+  "../src/imagens/barraca-fenix-dia-10.png",
+  "../src/imagens/bar-restaurante-o-chumbada-dia-10.png",
+  "../src/imagens/embrasa-dia-16.png",
+  "../src/imagens/barraca-4-irmaos-dia-17.png",
 ];
 
 // Inicialização quando o DOM estiver pronto
@@ -204,44 +214,66 @@ const playlist = [
   {
     title: "Cama de solteiro",
     album: "CD Promocional Rosy Silva",
-    cover: "capa-cd-promocional-rosy-silva.png",
-     file: "cama-de-solteiro-rosy_silva.mp3",
+    cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
+    file: "../src/musicas/cama-de-solteiro-rosy_silva.mp3",
     duration: "3:23",
   },
   {
     title: "Destruindo nosso amor",
     album: "CD Promocional Rosy Silva",
-    cover:
-      "capa-cd-promocional-rosy-silva.png",
-    file: "destruindo-nosso-amor-rosy_silva.mp3",
+    cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
+    file: "../src/musicas/destruindo-nosso-amor-rosy_silva.mp3",
     duration: "3:36",
   },
   {
     title: "Eu nunca te trai",
     album: "CD Promocional Rosy Silva",
-    cover:
-      "capa-cd-promocional-rosy-silva.png",
-    file: "eu-nunca-te-trai-rosy_sylva.mp3",
+    cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
+    file: "../src/musicas/eu-nunca-te-trai-rosy_sylva.mp3",
     duration: "3:15",
   },
   {
     title: "Me doi",
     album: "CD Promocional Rosy Silva",
-    cover:
-      "capa-cd-promocional-rosy-silva.png",
-    file: "me-doi-rosy_silva.mp3",
+    cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
+    file: "../src/musicas/me-doi-rosy_silva.mp3",
     duration: "4:06",
   },
   {
     title: "Telefone tocou",
     album: "CD Promocional Rosy Silva",
-    cover:
-      "capa-cd-promocional-rosy-silva.png",
-    file: "telefone-tocou-rosy_silva.mp3",
+    cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
+    file: "../src/musicas/telefone-tocou-rosy_silva.mp3",
     duration: "3:03",
   },
-
-
+  {
+    title: "Seu beijo",
+    album: "CD Promocional Rosy Silva",
+    cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
+    file: "../src/musicas/seu-beijo-rosy_silva.mp3",
+    duration: "2:45",
+  },
+  {
+    title: "De volta pro amor",
+    album: "CD Promocional Rosy Silva",
+    cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
+    file: "../src/musicas/de-volta-pro-amor-rosy_silva.mp3",
+    duration: "3:21",
+  },
+  {
+    title: "18 Quilates",
+    album: "CD Promocional Rosy Silva",
+    cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
+    file: "../src/musicas/18-quilates-rosy_silva.mp3",
+    duration: "3:21",
+  },
+  {
+    title: "Amiga falsa",
+    album: "CD Promocional Rosy Silva",
+    cover: "../src/imagens/capa-cd-promocional-rosy-silva.png",
+    file: "../src/musicas/amiga-falsa-rosy_silva.mp3",
+    duration: "3:53",
+  },
 ];
 
 // Elementos do Player
@@ -378,25 +410,25 @@ audioPlayer.volume = volumeSlider.value;
 
 // Adicione no final do seu script.js
 function handleResponsiveLayout() {
-    const player = document.querySelector('.music-player');
-    const controls = document.querySelector('.controls');
-    
-    if (window.innerWidth < 768) {
-        // Layout para mobile
-        if (!controls.classList.contains('mobile-layout')) {
-            controls.classList.add('mobile-layout');
-        }
-    } else {
-        // Layout para desktop
-        if (controls.classList.contains('mobile-layout')) {
-            controls.classList.remove('mobile-layout');
-        }
+  const player = document.querySelector(".music-player");
+  const controls = document.querySelector(".controls");
+
+  if (window.innerWidth < 768) {
+    // Layout para mobile
+    if (!controls.classList.contains("mobile-layout")) {
+      controls.classList.add("mobile-layout");
     }
+  } else {
+    // Layout para desktop
+    if (controls.classList.contains("mobile-layout")) {
+      controls.classList.remove("mobile-layout");
+    }
+  }
 }
 
 // Execute na carga e no redimensionamento
-window.addEventListener('load', handleResponsiveLayout);
-window.addEventListener('resize', handleResponsiveLayout);
+window.addEventListener("load", handleResponsiveLayout);
+window.addEventListener("resize", handleResponsiveLayout);
 
 //fim do novo music player
 
@@ -540,63 +572,69 @@ function setupForms() {
   }
 }
 // Controles da Rádio
-const radioPlayer = document.getElementById('radio-stream');
-const radioPlayBtn = document.getElementById('radio-play-btn');
-const radioVolume = document.getElementById('radio-volume');
-const radioStatus = document.getElementById('radio-status-text');
+const radioPlayer = document.getElementById("radio-stream");
+const radioPlayBtn = document.getElementById("radio-play-btn");
+const radioVolume = document.getElementById("radio-volume");
+const radioStatus = document.getElementById("radio-status-text");
 
 // Configuração inicial
 radioPlayer.volume = radioVolume.value;
 let isRadioPlaying = false;
 
 // Event Listeners
-radioPlayBtn.addEventListener('click', function() {
-    if (isRadioPlaying) {
-        radioPlayer.pause();
-        radioPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
-        radioStatus.textContent = 'Pausado';
-        isRadioPlaying = false;
-    } else {
-        radioPlayer.play()
-            .then(() => {
-                radioPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                radioStatus.textContent = 'Tocando agora';
-                isRadioPlaying = true;
-            })
-            .catch(error => {
-                console.error("Erro ao reproduzir rádio:", error);
-                radioStatus.textContent = 'Erro ao conectar';
-                // Mostra alerta para o usuário
-                showNotification('Não foi possível conectar à rádio. Tente novamente mais tarde.', 'error');
-            });
-    }
+radioPlayBtn.addEventListener("click", function () {
+  if (isRadioPlaying) {
+    radioPlayer.pause();
+    radioPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+    radioStatus.textContent = "Pausado";
+    isRadioPlaying = false;
+  } else {
+    radioPlayer
+      .play()
+      .then(() => {
+        radioPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        radioStatus.textContent = "Tocando agora";
+        isRadioPlaying = true;
+      })
+      .catch((error) => {
+        console.error("Erro ao reproduzir rádio:", error);
+        radioStatus.textContent = "Erro ao conectar";
+        // Mostra alerta para o usuário
+        showNotification(
+          "Não foi possível conectar à rádio. Tente novamente mais tarde.",
+          "error"
+        );
+      });
+  }
 });
 
-radioVolume.addEventListener('input', function() {
-    radioPlayer.volume = this.value;
+radioVolume.addEventListener("input", function () {
+  radioPlayer.volume = this.value;
 });
 
 // Mostrar status de conexão
-radioPlayer.addEventListener('playing', function() {
-    radioStatus.textContent = 'Tocando agora';
+radioPlayer.addEventListener("playing", function () {
+  radioStatus.textContent = "Tocando agora";
 });
 
-radioPlayer.addEventListener('waiting', function() {
-    radioStatus.textContent = 'Conectando...';
+radioPlayer.addEventListener("waiting", function () {
+  radioStatus.textContent = "Conectando...";
 });
 
-radioPlayer.addEventListener('error', function() {
-    radioStatus.textContent = 'Erro de conexão';
-    radioPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
-    isRadioPlaying = false;
+radioPlayer.addEventListener("error", function () {
+  radioStatus.textContent = "Erro de conexão";
+  radioPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+  isRadioPlaying = false;
 });
 
 // Função para tentar reconexão automaticamente
 function checkRadioConnection() {
-    if (isRadioPlaying && radioPlayer.readyState === 0) {
-        radioPlayer.load();
-        radioPlayer.play().catch(e => console.log("Tentativa de reconexão falhou"));
-    }
+  if (isRadioPlaying && radioPlayer.readyState === 0) {
+    radioPlayer.load();
+    radioPlayer
+      .play()
+      .catch((e) => console.log("Tentativa de reconexão falhou"));
+  }
 }
 
 // Verifica a conexão a cada 30 segundos
