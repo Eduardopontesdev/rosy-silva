@@ -130,6 +130,7 @@ const showsData = [
 
 // Galeria de fotos
 const galleryImages = [
+  "../src/imagens/agenda-agosto.png",
   "../src/imagens/lucians-bar-dia-03.png",
   "../src/imagens/delegas-grill-dia-09.png",
   "../src/imagens/barraca-fenix-dia-10.png",
@@ -333,98 +334,100 @@ function loadPlaylist() {
   });
   
   // Carrega as contagens ao inicializar
-  loadPlayCounts(); // ← Adicione esta linha
+  // loadPlayCounts(); // ← Adicione esta linha
 }
-
+//desativação da contagem de musicas tocadas
 // ========== NOVAS FUNÇÕES PARA CONTAGEM ========== //
 // Configuração
 // Configuração
-const API_NAMESPACE_TRACK = 'rosysilva-music-tracks';
-const SYNC_INTERVAL = 30000; // 30 segundos
+// const API_NAMESPACE_TRACK = 'rosysilva-music-tracks';
+// const SYNC_INTERVAL = 30000; // 30 segundos
 
-// Objeto para controle de sincronização
-const syncState = {
-    lastSync: {},
-    pendingSyncs: {}
-}; // Namespace diferente para músicas
+// // Objeto para controle de sincronização
+// const syncState = {
+//     lastSync: {},
+//     pendingSyncs: {}
+// }; // Namespace diferente para músicas
 
-// Função para contar plays
-// Função melhorada para contar plays
-async function countPlay(trackId) {
-    // 1. Atualização imediata local
-    const counterElement = document.getElementById(`plays-${trackId}`);
-    if (!counterElement) return;
+// // Função para contar plays
+// // Função melhorada para contar plays
+// async function countPlay(trackId) {
+//     // 1. Atualização imediata local
+//     const counterElement = document.getElementById(`plays-${trackId}`);
+//     if (!counterElement) return;
     
-    const now = Date.now();
-    const lastUpdate = syncState.lastSync[trackId] || 0;
+//     const now = Date.now();
+//     const lastUpdate = syncState.lastSync[trackId] || 0;
     
-    // Evitar múltiplas atualizações rápidas
-    if (now - lastUpdate < 5000) return;
+//     // Evitar múltiplas atualizações rápidas
+//     if (now - lastUpdate < 5000) return;
     
-    // Atualizar estado local
-    let localCount = parseInt(localStorage.getItem(`track-${trackId}-plays`)) || 0;
-    localCount++;
-    localStorage.setItem(`track-${trackId}-plays`, localCount);
-    counterElement.textContent = localCount;
+//     // Atualizar estado local
+//     let localCount = parseInt(localStorage.getItem(`track-${trackId}-plays`)) || 0;
+//     localCount++;
+//     localStorage.setItem(`track-${trackId}-plays`, localCount);
+//     counterElement.textContent = localCount;
     
-    // 2. Sincronização com API (em segundo plano)
-    syncState.pendingSyncs[trackId] = true;
-    syncState.lastSync[trackId] = now;
+//     // 2. Sincronização com API (em segundo plano)
+//     syncState.pendingSyncs[trackId] = true;
+//     syncState.lastSync[trackId] = now;
     
-    if (navigator.onLine) {
-        try {
-            const response = await fetch(`https://api.countapi.xyz/hit/${API_NAMESPACE_TRACK}/${trackId}`);
-            const data = await response.json();
+//     if (navigator.onLine) {
+//         try {
+//             const response = await fetch(`https://api.countapi.xyz/hit/${API_NAMESPACE_TRACK}/${trackId}`);
+//             const data = await response.json();
             
-            if (data.value) {
-                // Atualizar apenas se o valor da API for maior
-                if (data.value > localCount) {
-                    localStorage.setItem(`track-${trackId}-plays`, data.value);
-                    counterElement.textContent = data.value;
-                }
-            }
-        } catch (error) {
-            console.error("Erro na sincronização:", error);
-            // Agenda nova tentativa
-            setTimeout(() => syncPlayCount(trackId), 10000);
-        }
-    }
-    delete syncState.pendingSyncs[trackId];
-}
+//             if (data.value) {
+//                 // Atualizar apenas se o valor da API for maior
+//                 if (data.value > localCount) {
+//                     localStorage.setItem(`track-${trackId}-plays`, data.value);
+//                     counterElement.textContent = data.value;
+//                 }
+//             }
+//         } catch (error) {
+//             console.error("Erro na sincronização:", error);
+//             // Agenda nova tentativa
+//             setTimeout(() => syncPlayCount(trackId), 10000);
+//         }
+//     }
+//     delete syncState.pendingSyncs[trackId];
+// }
 
-// Função de sincronização periódica
-async function syncPlayCount(trackId) {
-    if (!navigator.onLine || syncState.pendingSyncs[trackId]) return;
+//fim desativação da contagem de musicas tocadas
+
+// // Função de sincronização periódica
+// async function syncPlayCount(trackId) {
+//     if (!navigator.onLine || syncState.pendingSyncs[trackId]) return;
     
-    try {
-        const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_TRACK}/${trackId}`);
-        const data = await response.json();
+//     try {
+//         const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_TRACK}/${trackId}`);
+//         const data = await response.json();
         
-        if (data.value) {
-            const localCount = parseInt(localStorage.getItem(`track-${trackId}-plays`)) || 0;
+//         if (data.value) {
+//             const localCount = parseInt(localStorage.getItem(`track-${trackId}-plays`)) || 0;
             
-            // Atualiza se o valor da API for diferente
-            if (data.value !== localCount) {
-                localStorage.setItem(`track-${trackId}-plays`, data.value);
-                const counterElement = document.getElementById(`plays-${trackId}`);
-                if (counterElement) {
-                    counterElement.textContent = data.value;
-                }
-            }
-        }
-    } catch (error) {
-        console.error("Erro na sincronização periódica:", error);
-    }
-}
+//             // Atualiza se o valor da API for diferente
+//             if (data.value !== localCount) {
+//                 localStorage.setItem(`track-${trackId}-plays`, data.value);
+//                 const counterElement = document.getElementById(`plays-${trackId}`);
+//                 if (counterElement) {
+//                     counterElement.textContent = data.value;
+//                 }
+//             }
+//         }
+//     } catch (error) {
+//         console.error("Erro na sincronização periódica:", error);
+//     }
+// }
 
-// Iniciar sincronização periódica para todas as músicas
-function startPeriodicSync() {
-    setInterval(() => {
-        playlist.forEach(track => {
-            syncPlayCount(track.id);
-        });
-    }, SYNC_INTERVAL);
-}
+// // Iniciar sincronização periódica para todas as músicas
+// function startPeriodicSync() {
+//     setInterval(() => {
+//         playlist.forEach(track => {
+//             syncPlayCount(track.id);
+//         });
+//     }, SYNC_INTERVAL);
+// }
 
 // // Função para carregar contagens
 // async function loadPlayCounts() {
@@ -482,7 +485,7 @@ function playTrack(index) {
   playBtn.innerHTML = '<i class="fas fa-pause"></i>';
   isPlaying = true;
 
-  countPlay(playlist[index].id);
+  // countPlay(playlist[index].id);
 }
 
 // Agrupar requisições quando muitas músicas
@@ -859,56 +862,56 @@ async function loadVisitCount() {
     }
 }
 
-// Sincronização periódica (a cada 2 minutos)
-function startVisitSync() {
-    setInterval(async () => {
-        if (navigator.onLine) {
-            try {
-                const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_VISITS}/${VISIT_KEY}`);
-                const data = await response.json();
+// // Sincronização periódica (a cada 2 minutos)
+// function startVisitSync() {
+//     setInterval(async () => {
+//         if (navigator.onLine) {
+//             try {
+//                 const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_VISITS}/${VISIT_KEY}`);
+//                 const data = await response.json();
                 
-                if (data.value) {
-                    const currentLocal = parseInt(localStorage.getItem(VISIT_KEY)) || 0;
-                    if (data.value > currentLocal) {
-                        localStorage.setItem(VISIT_KEY, data.value);
-                        const counterElement = document.getElementById('site-visits');
-                        if (counterElement) {
-                            counterElement.textContent = data.value;
-                        }
-                    }
-                }
-            } catch (error) {
-                console.log("Erro na sincronização periódica:", error);
-            }
-        }
-    }, 120000); // 120000 ms = 2 minutos
-}
+//                 if (data.value) {
+//                     const currentLocal = parseInt(localStorage.getItem(VISIT_KEY)) || 0;
+//                     if (data.value > currentLocal) {
+//                         localStorage.setItem(VISIT_KEY, data.value);
+//                         const counterElement = document.getElementById('site-visits');
+//                         if (counterElement) {
+//                             counterElement.textContent = data.value;
+//                         }
+//                     }
+//                 }
+//             } catch (error) {
+//                 console.log("Erro na sincronização periódica:", error);
+//             }
+//         }
+//     }, 120000); // 120000 ms = 2 minutos
+// }
 
-// Inicialização
-document.addEventListener('DOMContentLoaded', () => {
-    handleVisits();
-    startVisitSync();
-});
+// // Inicialização
+// document.addEventListener('DOMContentLoaded', () => {
+//     handleVisits();
+//     startVisitSync();
+// });
 
 // Inicialização (no final do seu script)
 loadPlaylist();
 
 // Garanta que loadPlayCounts() seja chamado após o carregamento da playlist
-setTimeout(() => {
-    loadPlayCounts();
-}, 500);
+// setTimeout(() => {
+//     // loadPlayCounts();
+// }, 500);
 
 // Iniciar sincronização periódica para todas as músicas
-function startPeriodicSync() {
-    setInterval(() => {
-        playlist.forEach(track => {
-            syncPlayCount(track.id);
-        });
-    }, SYNC_INTERVAL);
-}
+// function startPeriodicSync() {
+//     setInterval(() => {
+//         playlist.forEach(track => {
+//             syncPlayCount(track.id);
+//         });
+//     }, SYNC_INTERVAL);
+// }
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     loadPlaylist();
-    startPeriodicSync();
+    // startPeriodicSync();
 });
