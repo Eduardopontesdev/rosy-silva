@@ -198,7 +198,6 @@
                 -->
         </div>
       </div>
-       
     </section>
 
     <footer>
@@ -210,10 +209,10 @@
           </div>
 
           <div class="visitor-counter">
-          <i class="fas fa-users"></i>
-          <span id="site-visits">0</span>
-          visitantes
-        </div>
+            <i class="fas fa-users"></i>
+            <span id="site-visits">0</span>
+            visitantes
+          </div>
 
           <div class="footer-links">
             <a href="#shows">Shows</a>
@@ -234,7 +233,6 @@
             </form>
           </div> -->
         </div>
-       
 
         <div class="copyright">
           <p>
@@ -251,5 +249,28 @@
     </div>
 
     <script src="./src/scripts/script.js"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyALbB1u6BSN0g6ZBjkLB5R2mj-bnDEWrG0",
+        authDomain: "contado-de-vistas-rosy-silva.firebaseapp.com",
+        projectId: "contado-de-vistas-rosy-silva",
+        storageBucket: "contado-de-vistas-rosy-silva.firebasestorage.app",
+        messagingSenderId: "770547471888",
+        appId: "1:770547471888:web:9b14f208a532781927dc95",
+        measurementId: "G-8Y73B4TQ1Z",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
   </body>
 </html>
