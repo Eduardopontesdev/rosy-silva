@@ -426,32 +426,32 @@ function startPeriodicSync() {
     }, SYNC_INTERVAL);
 }
 
-// Função para carregar contagens
-async function loadPlayCounts() {
-    for (const track of playlist) {
-        const counterElement = document.getElementById(`plays-${track.id}`);
+// // Função para carregar contagens
+// async function loadPlayCounts() {
+//     for (const track of playlist) {
+//         const counterElement = document.getElementById(`plays-${track.id}`);
         
-        // 1. Tenta pegar da API primeiro
-        if (navigator.onLine) {
-            try {
-                const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_TRACK}/${track.id}`);
-                const data = await response.json();
+//         // 1. Tenta pegar da API primeiro
+//         if (navigator.onLine) {
+//             try {
+//                 const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_TRACK}/${track.id}`);
+//                 const data = await response.json();
                 
-                if (data.value) {
-                    counterElement.textContent = data.value;
-                    localStorage.setItem(`track-${track.id}-plays`, data.value);
-                    continue; // Pula para próxima música se obteve sucesso
-                }
-            } catch (error) {
-                console.log("Falha ao carregar da API:", error);
-            }
-        }
+//                 if (data.value) {
+//                     counterElement.textContent = data.value;
+//                     localStorage.setItem(`track-${track.id}-plays`, data.value);
+//                     continue; // Pula para próxima música se obteve sucesso
+//                 }
+//             } catch (error) {
+//                 console.log("Falha ao carregar da API:", error);
+//             }
+//         }
         
-        // 2. Fallback para localStorage
-        const localCount = localStorage.getItem(`track-${track.id}-plays`) || 0;
-        counterElement.textContent = localCount;
-    }
-}
+//         // 2. Fallback para localStorage
+//         const localCount = localStorage.getItem(`track-${track.id}-plays`) || 0;
+//         counterElement.textContent = localCount;
+//     }
+// }
 
 
 
