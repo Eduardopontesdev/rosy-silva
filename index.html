@@ -9,6 +9,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link rel="stylesheet" href="./src/estilos/styles.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   </head>
   <body>
     <header>
@@ -208,11 +210,12 @@
             <p>A voz inconfundível</p>
           </div>
 
-          <div class="visitor-counter">
+          <div class="visitor-counter" id="visitor-counter">
             <i class="fas fa-users"></i>
-            <span id="site-visits">0</span>
-            visitantes
+            <span id="total-visits">Carregando...</span>
           </div>
+
+          
 
           <div class="footer-links">
             <a href="#shows">Shows</a>
@@ -272,5 +275,7 @@
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
     </script>
+
+    <script src="visitor-counter.js"></script>
   </body>
 </html>
