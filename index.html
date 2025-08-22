@@ -149,15 +149,39 @@
       </div>
     </section>
 
-    <section id="shows" class="shows-section">
+    <!-- <section id="shows" class="shows-section">
       <div class="container">
         <h2 class="section-title">Agenda de Agosto</h2>
 
         <div class="agenda">
-          <!-- Eventos serão preenchidos via JavaScript -->
+          
         </div>
       </div>
-    </section>
+    </section> -->
+
+    <section class="shows-section">
+    <div class="container">
+        <h2 class="section-title">Agenda de Shows</h2>
+        
+        <!-- Navegação por mês -->
+        <div class="month-navigation">
+            <button class="month-nav-btn" id="prev-month">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <h3 class="current-month" id="current-month-display">Agosto 2023</h3>
+            
+            <button class="month-nav-btn" id="next-month">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <!-- Agenda será preenchida via JavaScript -->
+        <div class="agenda-container" id="agenda-container">
+            <!-- Os shows serão organizados por mês aqui -->
+        </div>
+    </div>
+</section>
 
     <section class="music-section" id="music">
       <div class="container">
@@ -382,7 +406,11 @@
         document.getElementById("total-visits").textContent = "Sistema offline";
       });
     </script>
-
+<!-- Lightbox para cartaz expandido -->
+<div id="poster-lightbox" class="poster-lightbox">
+    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+    <img id="expanded-poster" class="poster-expanded" src="" alt="Cartaz expandido">
+</div>
     <!-- <script src="visitor-counter.js"></script> -->
   </body>
 </html>

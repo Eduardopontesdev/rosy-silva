@@ -52,91 +52,393 @@ window.addEventListener("load", function () {
   }, 1500);
 });
 
-// Dados dos shows
+
+//inicio do sistema de mes dos eventos
+// Dados dos shows organizados por mês/ano
 const showsData = [
   {
-    date: "03/08/2025",
+    id: 1,
+    date: "2025-08-03",
     day: "03",
     month: "Ago",
+    year: "2025",
     title: "Lucian's Bar",
-    location: "Domingo apartir das 15H",
-    description: "Local: Pantanal",
+    location: "Camocim - Pantanal",
+    description: "Música ao vivo",
+    poster: "../src/imagens/lucians-bar-dia-03.png",
     link: "#",
+    time: "15:00",
+    price: "",
   },
   {
-    date: "09/08/2025",
+    id: 2,
+    date: "2025-08-08",
+    day: "08",
+    month: "Ago",
+    year: "2025",
+    title: "Restaurante Bom Prato",
+    location: "Camocim - Avenida Beira Mar",
+    description: "Música ao vivo",
+    poster: "../src/imagens/restaurante-bom-prato-dia-08.png",
+    link: "#",
+    time: "20:00",
+    price: "",
+  },
+  {
+    id: 3,
+    date: "2025-08-09",
     day: "09",
     month: "Ago",
+    year: "2025",
     title: "Delegas Grill",
-    location: "Sábado apartir das 19H",
-    description: "Local: Praça do Odus no Quiosque",
+    location: "Camocim - Praça do Odus no quiosque",
+    description: "Música ao vivo",
+    poster: "../src/imagens/delegas-grill-dia-09.png",
     link: "#",
+    time: "19:00",
+    price: "",
   },
   {
-    date: "10/08/2025",
+    id: 4,
+    date: "2025-08-10",
     day: "10",
     month: "Ago",
+    year: "2025",
     title: "Barraca Fenix",
-    location: "Domingo apartir das 13H",
-    description: "Local: Lago Seco",
+    location: "Camocim - Lago Seco",
+    description: "Música ao vivo",
+    poster: "../src/imagens/barraca-fenix-dia-10.png",
     link: "#",
+    time: "13:00",
+    price: "",
   },
   {
-    date: "10/08/2025",
+    id: 5,
+    date: "2025-08-10",
     day: "10",
     month: "Ago",
+    year: "2025",
     title: "Bar e Restaurante O Chumbada",
-    location: "Domingo apartir das 19H",
-    description: "Local: O Chumbada",
+    location: "Camocim - Cruzeiro",
+    description: "Música ao vivo",
+    poster: "../src/imagens/bar-restaurante-o-chumbada-dia-10.png",
     link: "#",
+    time: "19:00",
+    price: "",
   },
   {
-    date: "16/08/2025",
+    id: 6,
+    date: "2025-08-16",
     day: "16",
     month: "Ago",
-    title: "Embrasa",
-    location: "Sábado apartir das 22H",
-    description: "Local: Rua Perimetral",
+    year: "2025",
+    title: "Embrasa Pub",
+    location: "Camocim - Rua Perimetral",
+    description: "Música ao vivo",
+    poster: "../src/imagens/embrasa-dia-16.png",
     link: "#",
+    time: "22:00",
+    price: "",
   },
   {
-    date: "17/08/2025",
-    day: "17",
+    id: 7,
+    date: "2025-08-21",
+    day: "21",
     month: "Ago",
-    title: "Barraca 4 irmãos",
-    location: "Apartir do meio dia > * + Duas atração aguardando confirmar",
-    description: "Local: Lago seco",
+    year: "2025",
+    title: "Buteco da Mazé",
+    location: "Camocim - Olinda",
+    description: "Música ao vivo",
+    poster: "../src/imagens/buteco-da-maze-dia-21.png",
     link: "#",
+    time: "19:00",
+    price: "",
   },
   {
-    date: "24/08/2025",
-    day: "24",
+    id: 7,
+    date: "2025-08-23",
+    day: "23",
     month: "Ago",
-    title: "Agenda aberta",
-    location: "Horario a combinar",
-    description: "Local: indefinido",
+    year: "2025",
+    title: "RM Piscina",
+    location: "Camocim - Cidade com Deus",
+    description: "Música ao vivo",
+    poster: "../src/imagens/rm-piscina-dia-23.png",
     link: "#",
+    time: "15:00",
+    price: "",
   },
   {
-    date: "31/08/2025",
+    id: 8,
+    date: "2025-08-31",
     day: "31",
     month: "Ago",
-    title: "Agenda aberta",
-    location: "Horario a combinar",
-    description: "Local: indefinido",
+    year: "2025",
+    title: "Barraca Marilago",
+    location: "Camocim - Lago Seco",
+    description: "Música ao vivo",
+    poster: "../src/imagens/barraca-marilago-dia-31.jpg",
     link: "#",
+    time: "19:00",
+    price: "",
+  },
+  {
+    id: 9,
+    date: "2025-09-06",
+    day: "06",
+    month: "Set",
+    year: "2025",
+    title: "Evento Particular - Aniversário",
+    location: "Camocim",
+    description: "Música ao vivo",
+    poster: "../src/imagens/agenda-setembro.png",
+    link: "#",
+    time: "Horario não definido",
+    price: "",
+  },
+  {
+    id: 10,
+    date: "2025-09-13",
+    day: "13",
+    month: "Set",
+    year: "2025",
+    title: "Evento Particular",
+    location: "Parnaiba",
+    description: "Música ao vivo",
+    poster: "../src/imagens/agenda-setembro.png",
+    link: "#",
+    time: "Horario não definido",
+    price: "",
+  },
+  {
+    id: 11,
+    date: "2025-09-14",
+    day: "14",
+    month: "Set",
+    year: "2025",
+    title: "Evento Particular",
+    location: "Parnaiba",
+    description: "Música ao vivo",
+    poster: "../src/imagens/agenda-setembro.png",
+    link: "#",
+    time: "Horario não definido",
+    price: "",
+  },
+  {
+    id: 12,
+    date: "2025-09-21",
+    day: "21",
+    month: "Set",
+    year: "2025",
+    title: "Evento Particular",
+    location: "Camocim",
+    description: "Música ao vivo",
+    poster: "../src/imagens/agenda-setembro.png",
+    link: "#",
+    time: "Horario não definido",
+    price: "",
+  },
+  {
+    id: 13,
+    date: "2025-10-18",
+    day: "18",
+    month: "Out",
+    year: "2025",
+    title: "Evento Particular",
+    location: "Luis Correia",
+    description: "Música ao vivo",
+    poster: "../src/imagens/agenda-outubro.png",
+    link: "#",
+    time: "Horario não definido",
+    price: "",
+  },
+   {
+    id: 14,
+    date: "2025-10-19",
+    day: "19",
+    month: "Out",
+    year: "2025",
+    title: "Evento Particular",
+    location: "Luis Correia",
+    description: "Música ao vivo",
+    poster: "../src/imagens/agenda-outubro.png",
+    link: "#",
+    time: "Horario não definido",
+    price: "",
   },
 ];
+
+// Variáveis de controle
+let currentMonth = 7; // Agosto = 7 (0-11)
+let currentYear = 2025;
+
+// Função para formatar data
+function formatMonthYear(month, year) {
+  const months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ];
+  return `${months[month]} ${year}`;
+}
+
+// Função para filtrar shows por mês/ano
+function getShowsByMonth(month, year) {
+  return showsData.filter((show) => {
+    const showDate = new Date(show.date);
+    return showDate.getMonth() === month && showDate.getFullYear() === year;
+  });
+}
+
+// Função para renderizar a agenda CORRIGIDA
+function renderAgenda(month, year) {
+  const container = document.getElementById("agenda-container");
+  const monthDisplay = document.getElementById("current-month-display");
+
+  console.log(`Renderizando: ${month}/${year}`); // Debug
+
+  // Atualiza o display do mês atual
+  monthDisplay.textContent = formatMonthYear(month, year);
+
+  // Filtra shows do mês
+  const monthShows = getShowsByMonth(month, year);
+
+  console.log(`Shows encontrados: ${monthShows.length}`); // Debug
+
+  if (monthShows.length === 0) {
+    container.innerHTML = `
+            <div class="no-shows">
+                <i class="fas fa-calendar-times fa-2x"></i>
+                <h3>Nenhum show agendado para este mês</h3>
+                <p>Fique ligado nas próximas datas!</p>
+            </div>
+        `;
+  } else {
+    // CORREÇÃO: Usar innerHTML apenas uma vez
+    let agendaHTML = `
+            <div class="month-section">
+                <h3 class="month-header">
+                    <i class="fas fa-calendar-alt"></i>
+                    ${formatMonthYear(month, year)}
+                </h3>
+                <div class="agenda">
+        `;
+
+    monthShows.forEach((show) => {
+      agendaHTML += `
+                <div class="event">
+                    <div class="event-date">
+                        <div class="day">${show.day}</div>
+                        <div class="month">${show.month}</div>
+                    </div>
+                    <div class="event-info">
+                        <h3>${show.title}</h3>
+                        <p class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${show.location}
+                        </p>
+                        <p class="event-description">${show.description}</p>
+                        <div class="event-details">
+                            <span class="event-time">
+                                <i class="fas fa-clock"></i>
+                                ${show.time}
+                            </span>
+                            <span class="event-price">
+                                
+                            </span>
+                        </div>
+                    </div>
+                    <div class="event-poster">
+    <img src="${show.poster || "default-poster.jpg"}" 
+         alt="Cartaz ${show.title}" 
+         class="poster-thumbnail"
+         onclick="expandPoster(this)">
+</div>
+                </div>
+            `;
+    });
+
+    agendaHTML += `
+                </div>
+            </div>
+        `;
+
+    container.innerHTML = agendaHTML;
+  }
+}
+
+// Função para navegar entre meses
+function navigateMonth(direction) {
+  console.log(`Navegando para: ${direction}`); // Debug
+
+  if (direction === "next") {
+    currentMonth++;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+  } else {
+    currentMonth--;
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    }
+  }
+
+  console.log(`Novo mês/ano: ${currentMonth}/${currentYear}`); // Debug
+  renderAgenda(currentMonth, currentYear);
+}
+
+// Inicialização CORRIGIDA
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("Página carregada - Iniciando agenda"); // Debug
+
+  // Define explicitamente o mês/ano inicial
+  currentMonth = 7; // Agosto
+  currentYear = 2025;
+
+  // Renderiza a agenda inicial
+  renderAgenda(currentMonth, currentYear);
+
+  // Event listeners para navegação - CORRIGIDO
+  document.getElementById("prev-month").addEventListener("click", function (e) {
+    e.preventDefault();
+    navigateMonth("prev");
+  });
+
+  document.getElementById("next-month").addEventListener("click", function (e) {
+    e.preventDefault();
+    navigateMonth("next");
+  });
+});
+
+// Adicione este CSS para debug visual
+
+//fim do sistema de eventos
 
 // Galeria de fotos
 const galleryImages = [
   "../src/imagens/agenda-agosto.png",
   "../src/imagens/lucians-bar-dia-03.png",
+  "../src/imagens/restaurante-bom-prato-dia-08.png",
   "../src/imagens/delegas-grill-dia-09.png",
   "../src/imagens/barraca-fenix-dia-10.png",
   "../src/imagens/bar-restaurante-o-chumbada-dia-10.png",
   "../src/imagens/embrasa-dia-16.png",
-  "../src/imagens/barraca-4-irmaos-dia-17.png",
+  "../src/imagens/buteco-da-maze-dia-21.png",
+  "../src/imagens/rm-piscina-dia-23.png",
+  "../src/imagens/barraca-marilago-dia-31.jpg",
+  "../src/imagens/agenda-setembro.png",
+  "../src/imagens/agenda-outubro.png"
 ];
 
 // Inicialização quando o DOM estiver pronto
@@ -146,7 +448,7 @@ document.addEventListener("DOMContentLoaded", function () {
     new Date().getFullYear();
 
   // Carregar shows
-  loadShows();
+  // loadShows();
 
   // Carregar galeria
   loadGallery();
@@ -332,7 +634,7 @@ function loadPlaylist() {
 
     trackListElement.appendChild(trackElement);
   });
-  
+
   // Carrega as contagens ao inicializar
   // loadPlayCounts(); // ← Adicione esta linha
 }
@@ -355,28 +657,28 @@ function loadPlaylist() {
 //     // 1. Atualização imediata local
 //     const counterElement = document.getElementById(`plays-${trackId}`);
 //     if (!counterElement) return;
-    
+
 //     const now = Date.now();
 //     const lastUpdate = syncState.lastSync[trackId] || 0;
-    
+
 //     // Evitar múltiplas atualizações rápidas
 //     if (now - lastUpdate < 5000) return;
-    
+
 //     // Atualizar estado local
 //     let localCount = parseInt(localStorage.getItem(`track-${trackId}-plays`)) || 0;
 //     localCount++;
 //     localStorage.setItem(`track-${trackId}-plays`, localCount);
 //     counterElement.textContent = localCount;
-    
+
 //     // 2. Sincronização com API (em segundo plano)
 //     syncState.pendingSyncs[trackId] = true;
 //     syncState.lastSync[trackId] = now;
-    
+
 //     if (navigator.onLine) {
 //         try {
 //             const response = await fetch(`https://api.countapi.xyz/hit/${API_NAMESPACE_TRACK}/${trackId}`);
 //             const data = await response.json();
-            
+
 //             if (data.value) {
 //                 // Atualizar apenas se o valor da API for maior
 //                 if (data.value > localCount) {
@@ -398,14 +700,14 @@ function loadPlaylist() {
 // // Função de sincronização periódica
 // async function syncPlayCount(trackId) {
 //     if (!navigator.onLine || syncState.pendingSyncs[trackId]) return;
-    
+
 //     try {
 //         const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_TRACK}/${trackId}`);
 //         const data = await response.json();
-        
+
 //         if (data.value) {
 //             const localCount = parseInt(localStorage.getItem(`track-${trackId}-plays`)) || 0;
-            
+
 //             // Atualiza se o valor da API for diferente
 //             if (data.value !== localCount) {
 //                 localStorage.setItem(`track-${trackId}-plays`, data.value);
@@ -433,13 +735,13 @@ function loadPlaylist() {
 // async function loadPlayCounts() {
 //     for (const track of playlist) {
 //         const counterElement = document.getElementById(`plays-${track.id}`);
-        
+
 //         // 1. Tenta pegar da API primeiro
 //         if (navigator.onLine) {
 //             try {
 //                 const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_TRACK}/${track.id}`);
 //                 const data = await response.json();
-                
+
 //                 if (data.value) {
 //                     counterElement.textContent = data.value;
 //                     localStorage.setItem(`track-${track.id}-plays`, data.value);
@@ -449,14 +751,12 @@ function loadPlaylist() {
 //                 console.log("Falha ao carregar da API:", error);
 //             }
 //         }
-        
+
 //         // 2. Fallback para localStorage
 //         const localCount = localStorage.getItem(`track-${track.id}-plays`) || 0;
 //         counterElement.textContent = localCount;
 //     }
 // }
-
-
 
 // Toca uma faixa específica
 function playTrack(index) {
@@ -493,10 +793,10 @@ const DEBOUNCE_TIME = 1000;
 let syncTimeout;
 
 function scheduleSync() {
-    clearTimeout(syncTimeout);
-    syncTimeout = setTimeout(() => {
-        playlist.forEach(syncPlayCount);
-    }, DEBOUNCE_TIME);
+  clearTimeout(syncTimeout);
+  syncTimeout = setTimeout(() => {
+    playlist.forEach(syncPlayCount);
+  }, DEBOUNCE_TIME);
 }
 
 // Formata o tempo (segundos para MM:SS)
@@ -793,73 +1093,77 @@ function checkRadioConnection() {
 setInterval(checkRadioConnection, 30000);
 
 // Configuração
-const API_NAMESPACE_VISITS = 'rosysilva-site-visits-v2'; // Alterei o namespace para evitar cache
-const VISIT_KEY = 'total_visits';
+const API_NAMESPACE_VISITS = "rosysilva-site-visits-v2"; // Alterei o namespace para evitar cache
+const VISIT_KEY = "total_visits";
 
 // Função principal para contar visitas
 async function handleVisits() {
-    const counterElement = document.getElementById('site-visits');
-    if (!counterElement) return;
+  const counterElement = document.getElementById("site-visits");
+  if (!counterElement) return;
 
-    // 1. Verifica se já contou nesta sessão
-    if (!sessionStorage.getItem('visitCounted')) {
-        try {
-            // 2. Atualiza o localStorage primeiro (feedback imediato)
-            let localCount = parseInt(localStorage.getItem(VISIT_KEY)) || 0;
-            localCount++;
-            localStorage.setItem(VISIT_KEY, localCount);
-            counterElement.textContent = localCount;
+  // 1. Verifica se já contou nesta sessão
+  if (!sessionStorage.getItem("visitCounted")) {
+    try {
+      // 2. Atualiza o localStorage primeiro (feedback imediato)
+      let localCount = parseInt(localStorage.getItem(VISIT_KEY)) || 0;
+      localCount++;
+      localStorage.setItem(VISIT_KEY, localCount);
+      counterElement.textContent = localCount;
 
-            // 3. Tenta atualizar a API (se online)
-            if (navigator.onLine) {
-                const response = await fetch(`https://api.countapi.xyz/hit/${API_NAMESPACE_VISITS}/${VISIT_KEY}`);
-                const data = await response.json();
-                
-                // 4. Atualiza com o valor real da API
-                if (data.value) {
-                    counterElement.textContent = data.value;
-                    localStorage.setItem(VISIT_KEY, data.value);
-                }
-            }
+      // 3. Tenta atualizar a API (se online)
+      if (navigator.onLine) {
+        const response = await fetch(
+          `https://api.countapi.xyz/hit/${API_NAMESPACE_VISITS}/${VISIT_KEY}`
+        );
+        const data = await response.json();
 
-            // 5. Marca como contado nesta sessão
-            sessionStorage.setItem('visitCounted', 'true');
-        } catch (error) {
-            console.error("Erro ao contar visita:", error);
+        // 4. Atualiza com o valor real da API
+        if (data.value) {
+          counterElement.textContent = data.value;
+          localStorage.setItem(VISIT_KEY, data.value);
         }
-    }
+      }
 
-    // 6. Carrega a contagem atual (mesmo se já tiver contado)
-    loadVisitCount();
+      // 5. Marca como contado nesta sessão
+      sessionStorage.setItem("visitCounted", "true");
+    } catch (error) {
+      console.error("Erro ao contar visita:", error);
+    }
+  }
+
+  // 6. Carrega a contagem atual (mesmo se já tiver contado)
+  loadVisitCount();
 }
 
 // Função para carregar a contagem atual
 async function loadVisitCount() {
-    const counterElement = document.getElementById('site-visits');
-    if (!counterElement) return;
+  const counterElement = document.getElementById("site-visits");
+  if (!counterElement) return;
 
-    try {
-        // 1. Tenta pegar da API primeiro (se online)
-        if (navigator.onLine) {
-            const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_VISITS}/${VISIT_KEY}`);
-            const data = await response.json();
-            
-            if (data.value) {
-                // 2. Atualiza o localStorage com o valor da API
-                localStorage.setItem(VISIT_KEY, data.value);
-                counterElement.textContent = data.value;
-                return;
-            }
-        }
+  try {
+    // 1. Tenta pegar da API primeiro (se online)
+    if (navigator.onLine) {
+      const response = await fetch(
+        `https://api.countapi.xyz/get/${API_NAMESPACE_VISITS}/${VISIT_KEY}`
+      );
+      const data = await response.json();
 
-        // 3. Fallback para localStorage
-        const localCount = localStorage.getItem(VISIT_KEY) || '0';
-        counterElement.textContent = localCount;
-    } catch (error) {
-        console.error("Erro ao carregar contagem:", error);
-        const localCount = localStorage.getItem(VISIT_KEY) || '0';
-        counterElement.textContent = localCount;
+      if (data.value) {
+        // 2. Atualiza o localStorage com o valor da API
+        localStorage.setItem(VISIT_KEY, data.value);
+        counterElement.textContent = data.value;
+        return;
+      }
     }
+
+    // 3. Fallback para localStorage
+    const localCount = localStorage.getItem(VISIT_KEY) || "0";
+    counterElement.textContent = localCount;
+  } catch (error) {
+    console.error("Erro ao carregar contagem:", error);
+    const localCount = localStorage.getItem(VISIT_KEY) || "0";
+    counterElement.textContent = localCount;
+  }
 }
 
 // // Sincronização periódica (a cada 2 minutos)
@@ -869,7 +1173,7 @@ async function loadVisitCount() {
 //             try {
 //                 const response = await fetch(`https://api.countapi.xyz/get/${API_NAMESPACE_VISITS}/${VISIT_KEY}`);
 //                 const data = await response.json();
-                
+
 //                 if (data.value) {
 //                     const currentLocal = parseInt(localStorage.getItem(VISIT_KEY)) || 0;
 //                     if (data.value > currentLocal) {
@@ -911,7 +1215,46 @@ loadPlaylist();
 // }
 
 // Inicialização
-document.addEventListener('DOMContentLoaded', () => {
-    loadPlaylist();
-    // startPeriodicSync();
+document.addEventListener("DOMContentLoaded", () => {
+  loadPlaylist();
+  // startPeriodicSync();
 });
+
+
+//sistema para expandir o cartaz
+// Lightbox para cartaz expandido
+function expandPoster(imgElement) {
+    const lightbox = document.getElementById('poster-lightbox');
+    const expandedImg = document.getElementById('expanded-poster');
+    
+    expandedImg.src = imgElement.src;
+    expandedImg.alt = imgElement.alt;
+    
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Previne scroll
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('poster-lightbox');
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto'; // Restaura scroll
+}
+
+// Fechar com ESC ou clique fora da imagem
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeLightbox();
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById('poster-lightbox');
+    if (lightbox) {
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+    }
+});
+//fim sistema para expandir cartaz

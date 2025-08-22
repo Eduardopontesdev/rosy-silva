@@ -1004,6 +1004,234 @@ header {
     color: #555;
 }
 
+/* Navegação por mês */
+.month-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.month-nav-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.month-nav-btn:hover {
+    background: #d1375f;
+    transform: scale(1.1);
+}
+
+.month-nav-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.current-month {
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 600;
+    min-width: 180px;
+    text-align: center;
+}
+
+/* Container da agenda */
+.agenda-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.month-section {
+    margin-bottom: 30px;
+}
+
+.month-section:last-child {
+    margin-bottom: 0;
+}
+
+.month-header {
+    color: var(--secondary);
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.month-header i {
+    color: var(--primary);
+}
+
+.no-shows {
+    text-align: center;
+    color: var(--gray);
+    font-style: italic;
+    padding: 40px;
+    background: var(--light);
+    border-radius: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .month-navigation {
+        gap: 15px;
+    }
+    
+    .current-month {
+        font-size: 1.2rem;
+        min-width: 140px;
+    }
+    
+    .month-header {
+        font-size: 1.1rem;
+    }
+}
+
+
+.event-details {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.event-time, .event-price {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--gray);
+}
+
+.event-time i, .event-price i {
+    color: var(--primary);
+}
+
+
+/* Forçar visibilidade */
+.agenda-container * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+.event {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+/* Container do cartaz */
+.event-poster {
+    margin-left: 15px;
+    flex-shrink: 0;
+}
+
+/* Miniatura do cartaz */
+.poster-thumbnail {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.poster-thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Lightbox para o cartaz expandido */
+.poster-lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.poster-lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.poster-expanded {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.poster-lightbox.active .poster-expanded {
+    transform: scale(1);
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.close-lightbox:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .poster-thumbnail {
+        width: 60px;
+        height: 80px;
+    }
+    
+    .poster-expanded {
+        max-width: 95%;
+        max-height: 80%;
+    }
+    
+    .close-lightbox {
+        top: 10px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 25px;
+    }
+}
 /* Responsividade */
 @media (max-width: 768px) {
     .radio-info {
