@@ -665,6 +665,151 @@ footer {
   opacity: 0.7;
 }
 
+/*css para cartaz de show diario*/
+/* Banner "Hoje Tem Show!" */
+.today-show-banner {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #e83f6f, #2274a5);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    z-index: 1000;
+    max-width: 350px;
+    animation: slideInBanner 0.5s ease-out;
+    display: none;
+}
+
+.today-show-banner.show {
+    display: block;
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.banner-close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: white;
+    color: #e83f6f;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+
+.banner-close:hover {
+    transform: scale(1.1);
+    background: #ffebee;
+}
+
+.banner-icon {
+    font-size: 2rem;
+    animation: pulse 2s infinite;
+}
+
+.banner-text h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+}
+
+.banner-text p {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.banner-btn {
+    background: white;
+    color: #e83f6f;
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.banner-btn:hover {
+    background: #ffebee;
+    transform: translateY(-2px);
+}
+
+/* Animações */
+@keyframes slideInBanner {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .today-show-banner {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+    .banner-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .banner-icon {
+        font-size: 1.5rem;
+    }
+}
+
+/* Para quando o banner estiver visível */
+body.banner-visible {
+    margin-top: 0;
+}
+
+/* Garantir que o banner seja visível */
+.today-show-banner.show {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Forçar visibilidade em caso de problemas */
+#today-show-banner {
+    display: none;
+}
+
+#today-show-banner.show {
+    display: flex !important;
+}
+
+
 /* Responsividade */
 @media (max-width: 992px) {
   .music-player {

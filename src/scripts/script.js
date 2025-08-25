@@ -52,6 +52,33 @@ window.addEventListener("load", function () {
   }, 1500);
 });
 
+//codigo para mostrar shows do dia
+// Sistema ultra-simples que SEMPRE funciona
+document.addEventListener('DOMContentLoaded', function() {
+    // Verifica shows hoje de forma simples
+    const today = new Date().toISOString().split('T')[0];
+    const todaysShows = showsData.filter(show => show.date === today);
+    
+    if (todaysShows.length > 0) {
+        const banner = document.getElementById('today-show-banner');
+        const showInfo = document.getElementById('banner-show-info');
+        
+        if (banner && showInfo) {
+            showInfo.textContent = `${todaysShows[0].title} - ${todaysShows[0].location} às ${todaysShows[0].time}`;
+            banner.style.display = 'block';
+        }
+    }
+});
+
+// Função de fechamento simples
+function closeBanner() {
+    const banner = document.getElementById('today-show-banner');
+    if (banner) {
+        banner.style.display = 'none';
+    }
+}
+//fim do codigo para mostrar show do dia
+
 
 //inicio do sistema de mes dos eventos
 // Dados dos shows organizados por mês/ano
@@ -400,7 +427,7 @@ function navigateMonth(direction) {
 
 // Inicialização CORRIGIDA
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("Página carregada - Iniciando agenda"); // Debug
+  
 
   // Define explicitamente o mês/ano inicial
   currentMonth = 7; // Agosto
@@ -1256,5 +1283,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
 });
 //fim sistema para expandir cartaz
