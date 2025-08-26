@@ -206,7 +206,7 @@ const showsData = [
     description: "Música ao vivo",
     poster: "../src/imagens/barraca-marilago-dia-31.jpg",
     link: "#",
-    time: "19:00",
+    time: "13:00",
     price: "",
   },
   {
