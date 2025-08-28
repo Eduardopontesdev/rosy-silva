@@ -223,8 +223,36 @@ const showsData = [
     time: "Horario não definido",
     price: "",
   },
-  {
+   {
     id: 10,
+    date: "2025-09-07",
+    day: "07",
+    month: "Set",
+    year: "2025",
+    title: "Chácara L Show",
+    location: "Camocim",
+    description: "Música ao vivo",
+    poster: "../src/imagens/chacara-l-show-dia-07.png",
+    link: "#",
+    time: "14:00",
+    price: "",
+  },
+  {
+    id: 11,
+    date: "2025-09-07",
+    day: "07",
+    month: "Set",
+    year: "2025",
+    title: "Bar e Restaurante o Chumbada",
+    location: "Camocim",
+    description: "Música ao vivo",
+    poster: "../src/imagens/bar-restaurante-o-chumbada-dia-07.png",
+    link: "#",
+    time: "19:00",
+    price: "",
+  },
+  {
+    id: 12,
     date: "2025-09-13",
     day: "13",
     month: "Set",
@@ -238,7 +266,7 @@ const showsData = [
     price: "",
   },
   {
-    id: 11,
+    id: 13,
     date: "2025-09-14",
     day: "14",
     month: "Set",
@@ -252,7 +280,7 @@ const showsData = [
     price: "",
   },
   {
-    id: 12,
+    id: 14,
     date: "2025-09-21",
     day: "21",
     month: "Set",
@@ -266,7 +294,7 @@ const showsData = [
     price: "",
   },
   {
-    id: 13,
+    id: 15,
     date: "2025-10-18",
     day: "18",
     month: "Out",
@@ -280,7 +308,7 @@ const showsData = [
     price: "",
   },
    {
-    id: 14,
+    id: 16,
     date: "2025-10-19",
     day: "19",
     month: "Out",
@@ -465,6 +493,8 @@ const galleryImages = [
   "../src/imagens/rm-piscina-dia-23.png",
   "../src/imagens/barraca-marilago-dia-31.jpg",
   "../src/imagens/agenda-setembro.png",
+  "../src/imagens/chacara-l-show-dia-07.png",
+  "../src/imagens/bar-restaurante-o-chumbada-dia-07.png",
   "../src/imagens/agenda-outubro.png"
 ];
 
