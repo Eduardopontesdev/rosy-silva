@@ -482,6 +482,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Galeria de fotos
 const galleryImages = [
+ "../src/imagens/agenda-outubro.png",
+  "../src/imagens/bar-restaurante-o-chumbada-dia-07.png",
+  "../src/imagens/chacara-l-show-dia-07.png",
+  "../src/imagens/agenda-setembro.png",
   "../src/imagens/agenda-agosto.png",
   "../src/imagens/lucians-bar-dia-03.png",
   "../src/imagens/restaurante-bom-prato-dia-08.png",
@@ -492,10 +496,7 @@ const galleryImages = [
   "../src/imagens/buteco-da-maze-dia-21.png",
   "../src/imagens/rm-piscina-dia-23.png",
   "../src/imagens/barraca-marilago-dia-31.jpg",
-  "../src/imagens/agenda-setembro.png",
-  "../src/imagens/chacara-l-show-dia-07.png",
-  "../src/imagens/bar-restaurante-o-chumbada-dia-07.png",
-  "../src/imagens/agenda-outubro.png"
+
 ];
 
 // Inicialização quando o DOM estiver pronto
