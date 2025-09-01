@@ -458,7 +458,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
 
   // Define explicitamente o mês/ano inicial
-  currentMonth = 7; // Agosto
+  currentMonth = 8; // Setembro - mes menos -1
   currentYear = 2025;
 
   // Renderiza a agenda inicial
